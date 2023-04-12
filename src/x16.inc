@@ -171,6 +171,7 @@ MEMORY_FILL                   := $FEE4
 MEMORY_COPY                   := $FEE7
 MEMORY_CRC                    := $FEEA
 MEMORY_DECOMPRESS             := $FEED
+GRAPH_LL_clear				  := $FF23
 GRAPH_LL_init                 := $FEF6
 GRAPH_LL_get_info             := $FEF9
 GRAPH_LL_set_palette          := $FEFC

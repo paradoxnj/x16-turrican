@@ -16,7 +16,7 @@ DISK_INC  = 1
 ;                   Y = filename lsb
 ;                   ZP_ARG1 = ADDR_LO
 ;                   ZP_ARG2 = ADDR_MID
-;                   ZP_ARG3 = ADDR_HI
+;                   ZP_ARG3 = BANK
 ; Returns:          A = 0 on success
 ;                       1 on fail
 ; Description:      Loads a file into VRAM from disk

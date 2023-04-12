@@ -8,7 +8,7 @@ bin/$(NAME): src/$(NAME).asm
 	pushd src && make all && popd
 
 test: bin/$(NAME)
-	pushd bin && ..\..\..\emulator\x16emu.exe -debug -ram 2048 -joy1 -run -prg $(NAME) && popd
+	pushd bin && ..\..\..\emulator\x16emu.exe -run -prg $(NAME) -joy1 -ram 2048 -debug && popd
 
 clean:
 	del /q bin\*.*
