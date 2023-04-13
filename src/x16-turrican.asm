@@ -69,9 +69,9 @@ turrican_main:
         lda #$02
         sta VERA_L0_hscroll_h
 
-        lda #$B0
+        lda #$30
         sta VERA_L0_vscroll_l
-        lda #$03
+        lda #$01
         sta VERA_L0_vscroll_h
 
 @mainloop:

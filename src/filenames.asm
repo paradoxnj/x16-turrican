@@ -9,7 +9,7 @@ FILENAMES_INC  = 1
 
 .segment "CODE"
 
-level_1_1_tiles_fn: .literal "BRINSTAR.TIL"
+level_1_1_tiles_fn: .literal "1-1.TIL"
 level_1_1_tiles_fn_end:
 
 level_1_1_pal_fn:   .literal "1-1.PAL"
