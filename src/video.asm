@@ -77,11 +77,4 @@ video_handle_irq:
             jmp (oldirq)
 
 
-;**********************************************************************
-; BSS Variables
-;**********************************************************************
-.segment "BSS"
-
-oldirq:     .res 2                  ; Stores the old VERA IRQ address
-
 .endif

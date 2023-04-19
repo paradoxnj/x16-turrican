@@ -17,83 +17,51 @@
 .include "x16-turrican.inc"
 
 turrican_main:
-        ;jsr print_string
         jsr video_init
-        ;jsr print_string
         
         stz Joy1Change
         stz Joy1Status
         stz VSYNC
 
-        lda #(^VRAM_palette) + 2
-        sta ZP_ARG3
-        lda #>VRAM_palette
-        sta ZP_ARG2
-        lda #<VRAM_palette
-        sta ZP_ARG1
+        Load16 level_init_fn, level1_1_init
+        Load16 level_tick_fn, level1_1_tick
 
-        lda #(level_1_1_pal_fn_end-level_1_1_pal_fn)
-        ldx #<level_1_1_pal_fn
-        ldy #>level_1_1_pal_fn
- 
-        jsr disk_load_into_vram
+        lda #>@level_init_rts
+        pha
+        lda #<@level_init_rts
+        pha
+        jmp (level_init_fn)
 
-        lda #(^VRAM_TILES) + 2
-        sta ZP_ARG3
-        lda #>VRAM_TILES
-        sta ZP_ARG2
-        lda #<VRAM_TILES
-        sta ZP_ARG1
+@level_init_rts:
+        nop
 
-        lda #(level_1_1_tiles_fn_end-level_1_1_tiles_fn)
-        ldx #<level_1_1_tiles_fn
-        ldy #>level_1_1_tiles_fn
- 
-        jsr disk_load_into_vram
-
-        lda #2
-        sta ZP_ARG3
-        stz ZP_ARG2
-        stz ZP_ARG1
-
-        lda #(level_1_1_l0map_fn_end-level_1_1_l0map_fn)
-        ldx #<level_1_1_l0map_fn
-        ldy #>level_1_1_l0map_fn
-
-        jsr disk_load_into_vram
-
+        jsr player_init
         jsr video_init_irq
 
-        lda #$C0
-        sta VERA_L0_hscroll_l
-        lda #$02
-        sta VERA_L0_hscroll_h
-
-        lda #$30
-        sta VERA_L0_vscroll_l
-        lda #$01
-        sta VERA_L0_vscroll_h
-
 @mainloop:
+        ; Check for VSYNC
         wai
         lda VSYNC
         beq @mainloop
+
+        ; Check Input
         jsr input_check
+        jsr player_tick
+
+        ; Level logic
+        lda #>@level_tick_rts
+        pha
+        lda #<@level_tick_rts
+        pha
+        jmp (level_tick_fn)
+
+@level_tick_rts:
+        nop
+
         stz VSYNC
         stz Joy1Status
         jmp @mainloop
 
-        rts
-
-print_string:
-        ldx #0
-@l:
-        lda level_1_1_l0map_fn,X
-        beq @done
-        jsr CHROUT
-        inx
-        jmp @l
-@done:
         rts
 
 .include "filenames.asm"
@@ -101,3 +69,12 @@ print_string:
 .include "input.asm"
 .include "sprites.asm"
 .include "video.asm"
+.include "player.asm"
+.include "level1-1.asm"
+
+.segment "BSS"
+oldirq:                         .res 2                  ; Stores the old VERA IRQ address
+
+level_init_fn:                  .res 2                  ; Callback to level init function
+level_tick_fn:                  .res 2                  ; Callback to level tick function
+

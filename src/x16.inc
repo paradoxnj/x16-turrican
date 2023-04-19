@@ -44,6 +44,39 @@ TILE_HEIGHT_16				= (1 << 1)
 TILE_WIDTH_8				= 0
 TILE_WIDTH_16				= 1
 
+SPRITE_4BPP					= (0 << 7)
+SPRITE_8BPP					= (1 << 7)
+
+SPRITE_WIDTH_8				= (0 << 4)
+SPRITE_WIDTH_16				= (1 << 4)
+SPRITE_WIDTH_32				= (2 << 4)
+SPRITE_WIDTH_64				= (3 << 4)
+
+SPRITE_HEIGHT_8				= (0 << 6)
+SPRITE_HEIGHT_16			= (1 << 6)
+SPRITE_HEIGHT_32			= (2 << 6)
+SPRITE_HEIGHT_64			= (3 << 6)
+
+SPRITE_DISABLED				= (0 << 2)
+SPRITE_BG_L0				= (1 << 2)
+SPRITE_L1_L0				= (2 << 2)
+SPRITE_L1					= (3 << 2)
+
+SPRITE_HFLIP				= 1
+SPRITE_VFLIP				= 2
+
+JOY_BUTTON_B				= (1 << 7)
+JOY_BUTTON_A				= (1 << 7)
+JOY_BUTTON_Y				= (1 << 6)
+JOY_BUTTON_X				= (1 << 6)
+JOY_BUTTON_SELECT			= (1 << 5)
+JOY_BUTTON_LEFT				= (1 << 5)
+JOY_BUTTON_START			= (1 << 4)
+JOY_BUTTON_RIGHT			= (1 << 4)
+JOY_BUTTON_UP				= (1 << 3)
+JOY_BUTTON_DOWN				= (1 << 2)
+JOY_BUTTON_LT				= (1 << 1)
+JOY_BUTTON_RT				= (1 << 0)
 
 ; RAM Addresses
 

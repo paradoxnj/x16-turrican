@@ -7,19 +7,42 @@
 .ifndef TURRICAN_INC
 TURRICAN_INC  = 1
 
+;*******************************************************************
 ; Memory Map
+;*******************************************************************
 VRAM_TILES          = $16000
 VRAM_MAP            = $00000
+VRAM_HEROSPRITE     = $08004
+
+VRAM_palette01      = $1FA20        ; Hero Palette
 
 BANK_COLLISION      = 2
 BANK_OVERRIDE       = 3
 BANK_ENTITY         = 4
 
+SPR_IDX_HERO        = 1
+
+; Palettes 
+PALOFFSET_WORLD     = 0
+PALOFFSET_HERO      = 1
+
+;*******************************************************************
+; Zero Page Variables
+;*******************************************************************
+VSYNC               = $40           ; VSYNC Flag
+
 Joy1Change          = $42           ; Previous joystick status
 Joy1Status          = $44           ; Current joystick status
 
-VSYNC               = $40
+Hero_Dir            = $70           ; Direction hero is facing 0 = Right, 1 = Left (8-bits)
+Hero_WrlPosX        = $72           ; X Position in world (16-bits)
+Hero_WrlPosY        = $74           ; Y Position in world (16-bits)
+Hero_ScrPosX        = $76           ; X Position on screen (8-bits)
+Hero_ScrPosY        = $77           ; Y Position on screen (8-bits)
 
+;*******************************************************************
+; Macros
+;*******************************************************************
 .macro Load16 dest, val
     lda #<(val)
     sta dest
