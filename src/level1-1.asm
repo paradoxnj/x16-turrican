@@ -47,12 +47,12 @@ level1_1_init:
 
         jsr disk_load_into_vram
 
-        lda #$C0
+        lda #$D0
         sta VERA_L0_hscroll_l
-        lda #$02
+        lda #$00
         sta VERA_L0_hscroll_h
 
-        lda #$30
+        lda #$58
         sta VERA_L0_vscroll_l
         lda #$01
         sta VERA_L0_vscroll_h

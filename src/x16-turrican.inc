@@ -12,7 +12,7 @@ TURRICAN_INC  = 1
 ;*******************************************************************
 VRAM_TILES          = $16000
 VRAM_MAP            = $00000
-VRAM_HEROSPRITE     = $08004
+VRAM_HEROSPRITE     = $08008
 
 VRAM_palette01      = $1FA20        ; Hero Palette
 
