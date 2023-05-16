@@ -40,6 +40,9 @@ Hero_WrlPosY        = $74           ; Y Position in world (16-bits)
 Hero_ScrPosX        = $76           ; X Position on screen (8-bits)
 Hero_ScrPosY        = $77           ; Y Position on screen (8-bits)
 
+Camera_X            = $80           ; X Position of the camera (scroll register) (16-bits)
+Camera_Y            = $82           ; Y Position of the camera (scroll register) (16-bits)
+
 ;*******************************************************************
 ; Macros
 ;*******************************************************************

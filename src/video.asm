@@ -76,5 +76,43 @@ video_handle_irq:
 @done:
             jmp (oldirq)
 
+;*********************************************************************
+; Function:         video_calc_start_pos
+; Uses:             X = X Position
+;                   Y = Y Position
+; Returns:          Camera_X = X Scroll Position
+;                   Camera_Y = Y Scroll Position
+; Description:      Calculates the start position based on Tile XY
+;*********************************************************************
+video_calc_start_pos:
+            stx ZP_ARG1
+            stz ZP_ARG1+1
+            Move16 ZP_ARG1, Camera_X
+            Asl16 Camera_X
+            Asl16 Camera_X
+            Asl16 Camera_X
+            Asl16 Camera_X
+            Sub16 Camera_X, $0098
+
+            sty ZP_ARG1
+            stz ZP_ARG1+1
+            Move16 ZP_ARG1, Camera_Y
+            Asl16 Camera_Y
+            Asl16 Camera_Y
+            Asl16 Camera_Y
+            Asl16 Camera_Y
+            Sub16 Camera_Y, $0068
+
+            lda Camera_X
+            sta VERA_L0_hscroll_l
+            lda Camera_X+1
+            sta VERA_L0_hscroll_h
+
+            lda Camera_Y
+            sta VERA_L0_vscroll_l
+            lda Camera_Y+1
+            sta VERA_L0_vscroll_h
+
+            rts
 
 .endif
