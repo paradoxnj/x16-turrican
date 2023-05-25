@@ -50,7 +50,7 @@ level1_1_init:
         ldx #$18
         ldy #$1C
         jsr video_calc_start_pos
-
+        
         ;lda #$D0
         ;sta VERA_L0_hscroll_l
         ;lda #$00

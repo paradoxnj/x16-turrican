@@ -88,21 +88,24 @@ video_calc_start_pos:
             stx ZP_ARG1
             stz ZP_ARG1+1
             Move16 ZP_ARG1, Camera_X
+            Asl16 Camera_X              ; Camera_X * 16
             Asl16 Camera_X
             Asl16 Camera_X
             Asl16 Camera_X
-            Asl16 Camera_X
-            Sub16 Camera_X, $0098
+            Sub16 Camera_X, $0098       ; (Screen_Width / 2) - (Sprite_Width / 2)
+                                        ; (320 / 2) - (16 / 2) = 152 ($98)
 
             sty ZP_ARG1
             stz ZP_ARG1+1
             Move16 ZP_ARG1, Camera_Y
+            Asl16 Camera_Y              ; Camera_Y * 16
             Asl16 Camera_Y
             Asl16 Camera_Y
             Asl16 Camera_Y
-            Asl16 Camera_Y
-            Sub16 Camera_Y, $0068
+            Sub16 Camera_Y, $0068       ; (Screen_Height / 2) - (Sprite_Height / 2)
+                                        ; (240 / 2) - (32 / 2) = 104 ($68)
 
+            ; Set VERA scroll registers for L0
             lda Camera_X
             sta VERA_L0_hscroll_l
             lda Camera_X+1
